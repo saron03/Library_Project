@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>My Library</h1>
+    <p>Do you want to add new book? If yes click the button below</p>
+    <button id="addButton">Add a new book</button>
+    <form action="submit_url" method="post" target="_blank" id="form" >
+        <label for="title">Book Title</label>
+        <input type="text" class="title" name="title" placeholder="Enter book title" required>
+    
+        <label for="author">Author</label>
+        <input type="text" class="author" name="author" placeholder="Enter author's name" required>
+    
+        <label for="no_pages">Number of Pages</label>
+        <input type="number" class="no_pages" name="no_pages" placeholder="Enter number of pages" required>
+    
+        <label for="haveRead">Have you read the book?</label>
+        <select class="haveRead" name="haveRead" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        
+    
+        <input type="submit" value="Submit" id="submitButton">
+    </form>
+    <div class="displayedBooks"></div>
+    <script src="script.js"></script>
+</body>
+</html>
