@@ -8,11 +8,15 @@ function Book(title, author, no_pages, haveRead) {
     this.haveRead = haveRead;
   }
   
+  Book.prototype.toggleReadStatus = function () {
+    this.haveRead = this.haveRead === "Yes" ? "No" : "Yes";
+};
 
 function addBookToLibrary(title,author,no_pages,haveRead){
     let bookObject = new Book(title,author,no_pages,haveRead);
     myLibrary.push(bookObject)
 }
+
 
 function display(){
     const displayedBooksDiv = document.querySelector(".displayedBooks");
@@ -21,7 +25,7 @@ function display(){
         const book = myLibrary[i];
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book"); 
-        bookDiv.style.cssText="background-color:lightgreen; width:200px; border:2px solid black;border-radius:10px; padding:5px;"
+        bookDiv.style.cssText=" width:200px; border:2px solid black;border-radius:10px; padding:5px;"
 
     
         const title = document.createElement("h4");
@@ -40,6 +44,22 @@ function display(){
         const haveRead = document.createElement("p");
         haveRead.textContent = `Read: ${book.haveRead}`;
         bookDiv.appendChild(haveRead);
+
+        const remove = document.createElement("button");
+        remove.textContent="Remove Book";
+        remove.addEventListener("click", function(){
+            myLibrary.splice(i,1);
+            display();
+        });
+        bookDiv.appendChild(remove);
+
+        const toggleReadButton = document.createElement("button");
+        toggleReadButton.textContent = "Have read the book?";
+        toggleReadButton.addEventListener("click", function () {
+            book.toggleReadStatus();
+            display();
+        });
+        bookDiv.appendChild(toggleReadButton);
 
         displayedBooksDiv.appendChild(bookDiv);
 
@@ -76,4 +96,7 @@ submitButton.addEventListener("click", function(){
     form.style.display = "none"; 
     display();
 });
+
+
+
 
